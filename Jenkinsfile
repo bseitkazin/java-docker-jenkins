@@ -1,10 +1,19 @@
 pipeline {
-	agent any
-	stages {
-		stage("stage1-build") {
-			steps {
-				echo 'Hello World from SCM repo!'
-			}
-		}
-	}
+    agent none 
+    stages {
+        stage('Build') {
+            agent { docker 'maven:3-alpine' } 
+            steps {
+                echo 'Hello, Maven'
+                sh 'mvn clean package'
+            }
+        }
+        stage('Run') {
+            agent { docker 'openjdk:8-jre' } 
+            steps {
+                echo 'Hello, JDK'
+                sh 'java -jar /demo.jar'
+            }
+        }
+    }
 }
