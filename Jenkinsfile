@@ -12,7 +12,7 @@ pipeline {
             agent { docker 'openjdk:11.0.7-jdk-slim' } 
             steps {
                 echo 'Hello, JDK'
-                sh 'java -jar /target/demodocker-0.0.1-SNAPSHOT.jar'
+                sh 'java -jar target/demodocker-0.0.1-SNAPSHOT.jar'
             }
         }
     }
